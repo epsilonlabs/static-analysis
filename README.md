@@ -22,4 +22,4 @@ https://github.com/epsilonlabs/static-analysis.git (**master** branch)
 
 ## ETL Static Analysis
 
--Run **EtlStaticAnalysisStandaloneExample** as Java Application to run the example for static analysis on standalone ETL program
+-Run **EtlStaticAnalysisStandaloneExample** as Java Application to run the example for static analysis on a standalone ETL program
