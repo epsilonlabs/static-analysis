@@ -6,5 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Automatic-Module-Name: org.eclipse.epsilon.etl.staticanalyser
 Bundle-RequiredExecutionEnvironment: JavaSE-14
 Require-Bundle: org.eclipse.epsilon.eol.staticanalyser,
- org.eclipse.epsilon.etl.engine
+ org.eclipse.epsilon.etl.engine,
+ org.eclipse.epsilon.emc.emf
 Export-Package: org.eclipse.epsilon.etl.staticanalyser
