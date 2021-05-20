@@ -20,4 +20,6 @@ https://github.com/epsilonlabs/static-analysis.git (**master** branch)
 
 4. Set **org.eclipse.epsilon.target.target** as active target platform
 
-5. Run **EtlStaticAnalysisStandaloneExample** as Java Application to run the example for static analysis on standalone ETL program
+## ETL Static Analysis
+
+-Run **EtlStaticAnalysisStandaloneExample** as Java Application to run the example for static analysis on standalone ETL program
