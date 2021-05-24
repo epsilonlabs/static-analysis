@@ -5,10 +5,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Spliterators.AbstractDoubleSpliterator;
 
 import org.eclipse.epsilon.common.dt.editor.AbstractModuleEditor;
-import org.eclipse.epsilon.common.dt.editor.ModelTypeExtensionFactory;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.module.IModuleValidator;
 import org.eclipse.epsilon.common.module.ModuleElement;
@@ -16,7 +14,6 @@ import org.eclipse.epsilon.common.module.ModuleMarker;
 import org.eclipse.epsilon.common.module.ModuleMarker.Severity;
 import org.eclipse.epsilon.common.util.StringProperties;
 import org.eclipse.epsilon.common.util.StringUtil;
-import org.eclipse.epsilon.eol.BuiltinEolModule;
 import org.eclipse.epsilon.eol.EolModule;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.compile.context.EolCompilationContext;
@@ -91,8 +88,6 @@ import org.eclipse.epsilon.eol.dom.XorOperatorExpression;
 import org.eclipse.epsilon.eol.execute.context.FrameStack;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.Variable;
-import org.eclipse.epsilon.eol.models.IModel;
-import org.eclipse.epsilon.eol.models.IRewriter;
 import org.eclipse.epsilon.eol.types.EolAnyType;
 import org.eclipse.epsilon.eol.types.EolCollectionType;
 import org.eclipse.epsilon.eol.types.EolMapType;
@@ -104,7 +99,6 @@ import org.eclipse.epsilon.eol.types.EolSelfCollectionType;
 import org.eclipse.epsilon.eol.types.EolSelfContentType;
 import org.eclipse.epsilon.eol.types.EolSelfExpressionType;
 import org.eclipse.epsilon.eol.types.EolType;
-import org.eclipse.epsilon.evl.EvlModule;
 
 public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 
@@ -251,7 +245,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	@Override
 	public void visit(ExecutableBlock<?> executableBlock) {
 		ICompilableModuleElement body = (ICompilableModuleElement) executableBlock.getBody();
-		body.accept(this);
+		 body.accept(this);
 		// Should we add add accept method?
 	}
 
@@ -732,10 +726,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 							Severity.Warning));
 
 				} else if (targetExpression instanceof OperationCallExpression) {
-					if (!((OperationCallExpression) targetExpression).matchedReturnType.isEmpty()) {
-						for (int i = 0; i < ((OperationCallExpression) targetExpression).matchedReturnType
+					if (!getMatchedReturnType(((OperationCallExpression) targetExpression)).isEmpty()) {
+						for (int i = 0; i < getMatchedReturnType(((OperationCallExpression) targetExpression))
 								.size(); i++) {
-							contextType = ((OperationCallExpression) targetExpression).matchedReturnType.get(i);
+							contextType = getMatchedReturnType(((OperationCallExpression) targetExpression)).get(i);
 
 							if (isCompatible(op.getContextTypeExpression().getResolvedType(), contextType)) {
 								errorCode = 0;
@@ -818,7 +812,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 										nameExpression, " Parameter " + provPrameter
 												+ " might not match, as it requires " + reqParameter,
 										Severity.Warning));
-							} else if (operationCallExpression.getMatchedReturnTypes().isEmpty()) {
+							} else if (getMatchedReturnType(operationCallExpression).isEmpty()) {
 								// Bcz if we found the perfect match before, no need to make success false at
 								// the end
 								errorCode = 3;
@@ -1245,13 +1239,13 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		EolModule eolModule = (EolModule) imodule;
 		this.module = eolModule;
 
-		context = eolModule.getCompilationContext();
+		context = (EolCompilationContext) eolModule.getCompilationContext();
 		// context = (EolCompilationContext) module.getCompilationContext();
 		for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
 			modelDeclaration.accept(this);
 		}
 
-		String root = "/Users/sorourjahanbin/git/partialloading/plugins/org.eclipse.epsilon.eol.engine/src/org/eclipse/epsilon/eol/";
+		String root = "./src/org/eclipse/epsilon/eol/staticanalyser/";
 		if (!(module instanceof BuiltinEolModule)) {
 			try {
 				// builtinModule.parse(new File("./src/org/eclipse/epsilon/eol/builtin.eol"));
@@ -1268,7 +1262,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		for (Operation operation : module.getOperations()) {
 			if (operation.getReturnTypeExpression() == null) {
 
-				if (operation.hasReturnStatement()) {
+				if (hasReturnStatement(operation)) {
 					setReturnFlag(operation, true);
 					operation.setReturnTypeExpression(new TypeExpression("Any"));
 				} else
@@ -1278,7 +1272,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 			// when returnType is not null
 			else {
 
-				if (operation.hasReturnStatement())
+				if (hasReturnStatement(operation))
 					setReturnFlag(operation, true);
 				else {
 					if ((operation.getAnnotation("builtin") != null) || (operation.getAnnotation("firstorder") != null))
