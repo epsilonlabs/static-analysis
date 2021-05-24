@@ -1,3 +1,11 @@
+model Source driver EMF {
+nsuri = "TreeDsl"
+};
+
+model Target driver EMF {
+nsuri = "TreeDsl"
+};
+
 pre {
 	parameterPassedFromJava.println();
 }

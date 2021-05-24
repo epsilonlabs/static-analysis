@@ -16,9 +16,8 @@ import org.eclipse.epsilon.emc.emf.EmfModel;
 import org.eclipse.epsilon.etl.launch.EtlRunConfiguration;
 
 /**
- * This example demonstrates using the 
- * Epsilon Transformation Language, the M2M language
- * of Epsilon, in a stand-alone manner 
+ * This example demonstrates applying static analysis on ETL programs,
+ * in a stand-alone manner 
  * 
  * @author Sina Madani
  * @author Dimitrios Kolovos
