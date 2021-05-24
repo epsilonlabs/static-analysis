@@ -17,6 +17,7 @@ import org.eclipse.epsilon.common.util.StringUtil;
 import org.eclipse.epsilon.eol.EolModule;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.compile.context.EolCompilationContext;
+import org.eclipse.epsilon.eol.compile.context.IEolCompilationContext;
 import org.eclipse.epsilon.eol.compile.m3.MetaClass;
 import org.eclipse.epsilon.eol.compile.m3.StructuralFeature;
 import org.eclipse.epsilon.eol.dom.AbortStatement;
@@ -105,7 +106,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	protected List<ModuleMarker> errors = new ArrayList<>();
 	protected EolModule module;
 	protected BuiltinEolModule builtinModule = new BuiltinEolModule();
-	protected EolCompilationContext context;
+	protected IEolCompilationContext context;
 	HashMap<Operation, Boolean> returnFlags = new HashMap<>();
 	// For compiling user and builtin operations
 	HashMap<OperationCallExpression, ArrayList<Operation>> operations = new HashMap<>(); // keeping all matched
