@@ -1252,10 +1252,14 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		
 		EolModule eolModule = (EolModule) imodule;
 		this.module = eolModule;
+		context = new EolStaticAnalysisContext();
+		context.setModelFactory(new SubEmfModelFactory());
 
 		for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
 			modelDeclaration.accept(this);
 		}
+		
+		context.setModelDeclarations(module.getDeclaredModelDeclarations());
 
 		if (!(module instanceof BuiltinEolModule)) {
 			try {
