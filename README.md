@@ -18,7 +18,17 @@ Steps to execute static analysis:
 
 6. Open **releng/org.eclipse.epsilon.target/org.eclipse.epsilon.target.target** and click the **Set as Active Target Platform** link on the top right
 
-## ETL Example:
-8. Open org.eclipse.epsilon.etl.staticanalyser/src/org/eclipse/epsilon/etl/example/staticanalyser/EtlStaticAnalysisStandaloneExample.java.
+## EOL Example:
+1. Open org.eclipse.epsilon.eol.staticanalyser/src/org/eclipse/epsilon/eol/example/staticanalyser/EolStaticAnalysisStandaloneExample.java.
 
-9. Right-click on **EtlStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
+2. Right-click on **EolStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
+
+## EVL Example:
+1. Open org.eclipse.epsilon.evl.staticanalyser/src/org/eclipse/epsilon/evl/example/staticanalyser/EvlStaticAnalysisStandaloneExample.java.
+
+2. Right-click on **EvlStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
+
+## ETL Example:
+1. Open org.eclipse.epsilon.etl.staticanalyser/src/org/eclipse/epsilon/etl/example/staticanalyser/EtlStaticAnalysisStandaloneExample.java.
+
+2. Right-click on **EtlStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
