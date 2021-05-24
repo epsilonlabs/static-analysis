@@ -8,7 +8,7 @@ Steps to execute static analysis:
 
 1. Download the latest version of Eclipse and select the **Eclipse IDE for Eclipse Committers** option when prompted during the installation process.
 
-2. Clone the Git repository: **git://git.eclipse.org/gitroot/epsilon/org.eclipse.epsilon.git** (**sq-staticanalysis** branch).
+2. Clone the Git repository: **git://git.eclipse.org/gitroot/epsilon/org.eclipse.epsilon.git** (**master** branch).
 
 3. Import all the projects under the plugins, features, and tests folders in your workspace.
 
