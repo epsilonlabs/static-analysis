@@ -81,6 +81,7 @@ import org.eclipse.epsilon.eol.dom.TypeExpression;
 import org.eclipse.epsilon.eol.dom.VariableDeclaration;
 import org.eclipse.epsilon.eol.dom.WhileStatement;
 import org.eclipse.epsilon.eol.dom.XorOperatorExpression;
+import org.eclipse.epsilon.eol.example.staticanalyser.SubEmfModelFactory;
 import org.eclipse.epsilon.eol.execute.context.FrameStack;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.Variable;
@@ -99,7 +100,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	protected List<ModuleMarker> errors = new ArrayList<>();
 	protected EolModule module;
 	protected BuiltinEolModule builtinModule = new BuiltinEolModule();
-	protected EolStaticAnalysisContext context = new EolStaticAnalysisContext();
+	protected EolStaticAnalysisContext context;
 	HashMap<Operation, Boolean> returnFlags = new HashMap<>();
 	// For compiling user and builtin operations
 	HashMap<OperationCallExpression, ArrayList<Operation>> operations = new HashMap<>(); // keeping all matched
@@ -1320,6 +1321,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		errors = new ArrayList<>();
 		EolModule eolModule = (EolModule) imodule;
 		this.module = eolModule;
+
 		preValidate(module);
 		mainValidate(module);
 		postValidate(module);
