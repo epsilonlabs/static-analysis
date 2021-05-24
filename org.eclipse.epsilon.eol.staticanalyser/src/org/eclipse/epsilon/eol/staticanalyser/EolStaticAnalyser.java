@@ -1147,10 +1147,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		if (type == null) {
 			
 			switch (typeExpression.getName()) {
-			case "EolSelf": type = new EolSelf(); break;
-			case "EolSelfContentType": type = new EolSelfContentType(); break;
-			case "EolSelfExpressionType": type = new EolSelfExpressionType(); break;
-			case "EolSelfCollectionType": type = new EolSelfCollectionType(); break;
+			case "EolSelf": type = new EolSelf(); setResolvedType(typeExpression, type); break;
+			case "EolSelfContentType": type = new EolSelfContentType(); setResolvedType(typeExpression, type); break;
+			case "EolSelfExpressionType": type = new EolSelfExpressionType(); setResolvedType(typeExpression, type); break;
+			case "EolSelfCollectionType": type = new EolSelfCollectionType(); setResolvedType(typeExpression, type); break;
 			}
 		}
 		
