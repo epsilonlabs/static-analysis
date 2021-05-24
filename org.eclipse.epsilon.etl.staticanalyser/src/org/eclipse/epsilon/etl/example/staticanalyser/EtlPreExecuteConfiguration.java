@@ -1,6 +1,5 @@
 package org.eclipse.epsilon.etl.example.staticanalyser;
 
-import org.eclipse.epsilon.emc.emf.SubEmfModelFactory;
 import org.eclipse.epsilon.eol.IEolModule;
 import org.eclipse.epsilon.eol.dom.ModelDeclaration;
 import org.eclipse.epsilon.eol.launch.EolRunConfiguration;
