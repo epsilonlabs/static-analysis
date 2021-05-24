@@ -4,22 +4,21 @@ This repository is built-on the top of Epsilon framework. It supports several la
 2. Epsilon Validation Language (EVL)
 3. Epsilon Transformation Language (ETL)
 
-Steps to apply static analysis:
+Steps to execute static analysis:
 
-1. Source code of Epsilon shall be cloned from the following git repository:
-  
-  **git://git.eclipse.org/gitroot/epsilon/org.eclipse.epsilon.git**
+1. Download the latest version of Eclipse and select the **Eclipse IDE for Eclipse Committers** option when prompted during the installation process.
 
--Checkout **sq-staticanalysis** branch
+2. Clone the Git repository: **git://git.eclipse.org/gitroot/epsilon/org.eclipse.epsilon.git** (**sq-staticanalysis** branch).
 
-2. Clone static analysis repository:
+3. Import all the projects under the plugins, features, and tests folders in your workspace.
 
-https://github.com/epsilonlabs/static-analysis.git (**master** branch)
+4. Clone the static analysis git repository: **https://github.com/epsilonlabs/static-analysis.git** (**master** branch)
 
-3. Import both 1 and 2 repositories plugins in eclipse workspace to use static analysis
+5. Import all the projects in your workspace.
 
-4. Set **org.eclipse.epsilon.target.target** as active target platform
+6. Open **releng/org.eclipse.epsilon.target/org.eclipse.epsilon.target.target** and click the **Set as Active Target Platform** link on the top right
 
-## ETL Static Analysis
+## ETL Example:
+8. Open org.eclipse.epsilon.etl.staticanalyser/src/org/eclipse/epsilon/etl/example/staticanalyser/EtlStaticAnalysisStandaloneExample.java.
 
--Run **EtlStaticAnalysisStandaloneExample** as Java Application to run the example for static analysis on a standalone ETL program
+9. Right-click on **EtlStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
