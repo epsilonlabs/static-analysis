@@ -18,14 +18,15 @@ public class EvlPreExecuteConfiguration extends EolRunConfiguration {
 	@Override
 	protected void preExecute() throws Exception {
 		super.preExecute();
-		for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
-			if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
-				module.getCompilationContext().setModelFactory(new SubEmfModelFactory());
-		}
 		module.getContext().setModule(module);
 		long startTime = System.currentTimeMillis();
 		if (module instanceof EvlModule) {
-			new EvlStaticAnalyser().validate(module);
+			EvlStaticAnalyser staticAnalyser = new EvlStaticAnalyser();
+			for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
+				if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
+					staticAnalyser.getContext().setModelFactory(new SubEmfModelFactory());
+			}
+			staticAnalyser.validate(module);
 			long stopTime = System.currentTimeMillis();
 			System.out.println("Static Analysis Took : " + (stopTime - startTime));
 		}

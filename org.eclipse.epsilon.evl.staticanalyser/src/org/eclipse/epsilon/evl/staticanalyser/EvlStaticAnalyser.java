@@ -6,6 +6,7 @@ import java.util.List;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.module.ModuleMarker;
 import org.eclipse.epsilon.eol.execute.context.Variable;
+import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalysisContext;
 import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalyser;
 import org.eclipse.epsilon.erl.dom.Post;
 import org.eclipse.epsilon.erl.dom.Pre;
@@ -15,7 +16,7 @@ import org.eclipse.epsilon.evl.dom.ConstraintContext;
 import org.eclipse.epsilon.evl.dom.Fix;
 import org.eclipse.epsilon.evl.dom.IEvlVisitor;
 
-public class EvlStaticAnalyser extends EolStaticAnalyser implements IEvlVisitor{
+public class EvlStaticAnalyser extends EolStaticAnalyser implements IEvlVisitor {
 
 	public EvlStaticAnalyser() {
 		
@@ -28,7 +29,6 @@ public class EvlStaticAnalyser extends EolStaticAnalyser implements IEvlVisitor{
 			return Collections.emptyList();
 	
 		EvlModule evlModule = (EvlModule) imodule;
-		context = evlModule.getCompilationContext();
 		
 		super.preValidate(evlModule);
 		for (Pre pre : evlModule.getPre()) {
@@ -73,7 +73,7 @@ public class EvlStaticAnalyser extends EolStaticAnalyser implements IEvlVisitor{
 	public void visit(Constraint constraint) {
 		// TODO Auto-generated method stub
 		ConstraintContext cc = (ConstraintContext)constraint.getParent();
-		context.getFrameStack().put(new Variable("self",cc.getTypeExpression().getResolvedType()));
+		context.getFrameStack().put(new Variable("self",getResolvedType(cc.getTypeExpression())));
 		 
 			
 		if (constraint.getGuardBlock()!=null)

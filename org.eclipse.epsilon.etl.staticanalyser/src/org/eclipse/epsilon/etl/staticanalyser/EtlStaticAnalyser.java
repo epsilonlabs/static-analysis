@@ -5,16 +5,16 @@ import java.util.List;
 
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.module.ModuleMarker;
-import org.eclipse.epsilon.eol.compile.context.EolCompilationContext;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.dom.Expression;
 import org.eclipse.epsilon.eol.dom.StatementBlock;
+import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalysisContext;
 import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalyser;
 import org.eclipse.epsilon.erl.dom.Post;
 import org.eclipse.epsilon.erl.dom.Pre;
 import org.eclipse.epsilon.etl.EtlModule;
-import org.eclipse.epsilon.etl.dom.TransformationRule;
 import org.eclipse.epsilon.etl.dom.IEtlVisitor;
+import org.eclipse.epsilon.etl.dom.TransformationRule;
 
 public class EtlStaticAnalyser extends EolStaticAnalyser implements IEtlVisitor {
 
@@ -61,7 +61,7 @@ public class EtlStaticAnalyser extends EolStaticAnalyser implements IEtlVisitor 
 			return null;
 			EtlModule etlModule = (EtlModule) imodule;
 			this.module = etlModule;
-			context = (EolCompilationContext) etlModule.getCompilationContext();;
+			context = new EolStaticAnalysisContext();
 			
 			super.preValidate(etlModule);
 			for (Pre pre : etlModule.getDeclaredPre()) {

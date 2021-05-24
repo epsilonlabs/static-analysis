@@ -18,14 +18,16 @@ public class EtlPreExecuteConfiguration extends EolRunConfiguration {
 	@Override
 	protected void preExecute() throws Exception {
 		super.preExecute();
-		for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
-			if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
-				module.getCompilationContext().setModelFactory(new SubEmfModelFactory());
-		}
+		
 		module.getContext().setModule(module);
 		long startTime = System.currentTimeMillis();
 		if (module instanceof EtlModule) {
-			new EtlStaticAnalyser().validate(module);
+			EtlStaticAnalyser staticAnalyser = new EtlStaticAnalyser();
+			for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
+				if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
+					staticAnalyser.getContext().setModelFactory(new SubEmfModelFactory());
+			}
+			staticAnalyser.validate(module);
 			long stopTime = System.currentTimeMillis();
 			System.out.println("Static Analysis Took : " + (stopTime - startTime));
 		}

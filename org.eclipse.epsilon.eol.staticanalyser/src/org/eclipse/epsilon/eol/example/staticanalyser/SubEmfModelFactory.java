@@ -1,8 +1,8 @@
 package org.eclipse.epsilon.eol.example.staticanalyser;
 
 import org.eclipse.epsilon.emc.emf.EmfModel;
-import org.eclipse.epsilon.eol.compile.context.IModelFactory;
 import org.eclipse.epsilon.eol.models.IModel;
+import org.eclipse.epsilon.eol.staticanalyser.IModelFactory;
 
 public class SubEmfModelFactory implements IModelFactory {
 
