@@ -1,18 +1,12 @@
 package org.eclipse.epsilon.evl.staticanalyser;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.epsilon.common.module.IModule;
-import org.eclipse.epsilon.common.module.IModuleValidator;
 import org.eclipse.epsilon.common.module.ModuleMarker;
-import org.eclipse.epsilon.eol.BuiltinEolModule;
-import org.eclipse.epsilon.eol.EolModule;
-import org.eclipse.epsilon.eol.compile.context.EolCompilationContext;
 import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalyser;
-import org.eclipse.epsilon.erl.dom.NamedStatementBlockRule;
 import org.eclipse.epsilon.erl.dom.Post;
 import org.eclipse.epsilon.erl.dom.Pre;
 import org.eclipse.epsilon.evl.EvlModule;
