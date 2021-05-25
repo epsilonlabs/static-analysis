@@ -23,10 +23,10 @@ public class EolPreExecuteConfiguration extends EolRunConfiguration {
 		long startTime = System.currentTimeMillis();
 		if (module instanceof EolModule) {
 			EolStaticAnalyser staticAnalyser = new EolStaticAnalyser();
-			for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
-				if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
-					staticAnalyser.getContext().setModelFactory(new SubEmfModelFactory());
-			}
+//			for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
+//				if (modelDeclaration.getDriverNameExpression().getName().equals("EMF"))
+//					staticAnalyser.getContext().setModelFactory(new SubEmfModelFactory());
+//			}
 			staticAnalyser.validate(module);
 			long stopTime = System.currentTimeMillis();
 			System.out.println("Static Analysis Took : " + (stopTime - startTime));
