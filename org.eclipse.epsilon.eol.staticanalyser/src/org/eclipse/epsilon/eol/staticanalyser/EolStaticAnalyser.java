@@ -98,7 +98,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	protected List<ModuleMarker> errors = new ArrayList<>();
 	protected EolModule module;
 	protected BuiltinEolModule builtinModule = new BuiltinEolModule();
-	protected EolStaticAnalysisContext context;
+	protected EolStaticAnalysisContext context = new EolStaticAnalysisContext();
 	HashMap<Operation, Boolean> returnFlags = new HashMap<>();
 	// For compiling user and builtin operations
 	HashMap<OperationCallExpression, ArrayList<Operation>> operations = new HashMap<>(); // keeping all matched
@@ -1251,8 +1251,9 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		
 		EolModule eolModule = (EolModule) imodule;
 		this.module = eolModule;
-		context = new EolStaticAnalysisContext();
-		context.setModelFactory(new SubEmfModelFactory());
+	//	context = new EolStaticAnalysisContext();
+		if (context.getModelFactory() == null)
+			context.setModelFactory(new ModelTypeExtensionFactory());
 
 		for (ModelDeclaration modelDeclaration : module.getDeclaredModelDeclarations()) {
 			modelDeclaration.accept(this);
@@ -1308,6 +1309,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 
 		if (!(module instanceof BuiltinEolModule))
 			module.getOperations().removeAll(builtinModule.getDeclaredOperations());
+			context.getFrameStack().dispose();
 	}
 
 	@Override
