@@ -1,6 +1,5 @@
 package org.eclipse.epsilon.eol.staticanalyser;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -81,7 +80,6 @@ import org.eclipse.epsilon.eol.dom.TypeExpression;
 import org.eclipse.epsilon.eol.dom.VariableDeclaration;
 import org.eclipse.epsilon.eol.dom.WhileStatement;
 import org.eclipse.epsilon.eol.dom.XorOperatorExpression;
-import org.eclipse.epsilon.eol.example.staticanalyser.SubEmfModelFactory;
 import org.eclipse.epsilon.eol.execute.context.FrameStack;
 import org.eclipse.epsilon.eol.execute.context.FrameType;
 import org.eclipse.epsilon.eol.execute.context.Variable;

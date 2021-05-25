@@ -6,7 +6,6 @@ import java.util.List;
 import org.eclipse.epsilon.common.module.IModule;
 import org.eclipse.epsilon.common.module.ModuleMarker;
 import org.eclipse.epsilon.eol.execute.context.Variable;
-import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalysisContext;
 import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalyser;
 import org.eclipse.epsilon.erl.dom.Post;
 import org.eclipse.epsilon.erl.dom.Pre;
