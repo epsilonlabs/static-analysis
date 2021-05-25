@@ -1447,11 +1447,12 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 			while (!ok) {
 				if (!(targetType.equals(valueType)) && !(targetType instanceof EolAnyType)) {
 
-					valueType = getParentType(valueType);
-
 					if (valueType instanceof EolAnyType) {
 						return false;
 					}
+					
+					valueType = getParentType(valueType);
+
 
 				} else if (targetType instanceof EolAnyType) {
 					return true;
