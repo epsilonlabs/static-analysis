@@ -47,10 +47,11 @@ public class EolStaticAnalyserTests {
 	@Test
 	public void testPrimitiveTypesAssignmentExpressionErrorMessage() throws Exception {
 		StringBuffer st = new StringBuffer();
-		st.append("var i : Integer = 4;\n");
-		st.append("var s : String = \"test\";\n");
-		st.append("(/*String cannot be assigned to Integer*/i) = s;\n");
-		assertValidMessage(st.toString());
+		st.append("var i : Integer = 4;");
+		st.append("var s : String = \"test\";");
+		String expectedMessage = "String cannot be assigned to Integer";
+		st.append("i = s;");
+		assertValidMessage(st.toString(),expectedMessage);
 	}
 
 	public void assertValid(String eol) throws Exception {
@@ -61,12 +62,12 @@ public class EolStaticAnalyserTests {
 		visit(module.getChildren());
 	}
 
-	public void assertValidMessage(String eol) throws Exception {
+	public void assertValidMessage(String eol, String message) throws Exception {
 		EolModule module = new EolModule();
 		module.parse(eol);
 		EolStaticAnalyser staticAnalyser = new EolStaticAnalyser();
 		List<ModuleMarker> errors = staticAnalyser.validate(module);
-		visitMarker(module.getChildren(), errors);
+		assertEquals(message, errors.get(0).getMessage());
 	}
 
 	protected void visit(List<ModuleElement> elements) {
@@ -75,22 +76,6 @@ public class EolStaticAnalyserTests {
 				assertEquals(element.getComments().get(0).toString(), getResolvedType(element).toString());
 			}
 			visit(element.getChildren());
-		}
-	}
-
-	protected void visitMarker(List<ModuleElement> elements, List<ModuleMarker> errors) {
-		for (ModuleElement element : elements) {
-			if (!element.getComments().isEmpty()) {
-				int markerLine;
-				int commentLine = element.getComments().get(0).getRegion().getStart().getLine();
-				for (ModuleMarker m : errors) {
-					markerLine = m.getRegion().getStart().getLine();
-					if (commentLine == markerLine)
-						assertEquals(element.getComments().get(0).toString(), m.getMessage());
-				}
-
-			}
-			visitMarker(element.getChildren(), errors);
 		}
 	}
 
