@@ -61,7 +61,6 @@ public class EtlStaticAnalyser extends EolStaticAnalyser implements IEtlVisitor 
 			return null;
 			EtlModule etlModule = (EtlModule) imodule;
 			this.module = etlModule;
-			context = new EolStaticAnalysisContext();
 			
 			super.preValidate(etlModule);
 			for (Pre pre : etlModule.getDeclaredPre()) {
