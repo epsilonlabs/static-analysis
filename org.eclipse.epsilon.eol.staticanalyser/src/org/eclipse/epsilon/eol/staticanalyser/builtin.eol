@@ -207,7 +207,12 @@ operation Any isKindOf(type : Any) : Boolean {
 @builtin
 operation Any allOfKind() : Collection <Any> {
 }
-
+@builtin
+operation Any allInstances() : Collection <EolSelf> {
+}
+@builtin
+operation Any allOfType() : Collection <EolSelf> {
+}
 // Added for Eugenia _ 17March2020
 @builtin
 operation Collection<Any> includes(item : Any) : Boolean {
