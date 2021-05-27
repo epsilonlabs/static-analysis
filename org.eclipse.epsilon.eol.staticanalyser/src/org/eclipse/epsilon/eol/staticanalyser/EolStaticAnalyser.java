@@ -1675,7 +1675,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	
 	public EolType getType(Parameter parameter) {
 		EolType type = (EolType) parameter.getData().get("type");
-		if (type != null) {
+	    if (type == null) {
 			if (parameter.getTypeExpression() != null) {
 				type = getResolvedType(parameter.getTypeExpression());
 			}
