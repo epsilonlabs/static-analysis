@@ -705,6 +705,13 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 					expType = getResolvedType(parameterExpressions.get(0));
 					setResolvedType(op.getReturnTypeExpression(), expType);
 				}
+		
+				if (getResolvedType(op.getReturnTypeExpression()) instanceof EolCollectionType
+						&& ((EolCollectionType)getResolvedType((op.getReturnTypeExpression()))).getContentType().toString().equals("EolSelf") ) {
+					expType = getResolvedType(op.getReturnTypeExpression());
+					((EolCollectionType)expType).setContentType(getResolvedType(targetExpression));
+					setResolvedType(op.getReturnTypeExpression(), expType);
+				}
 			}
 
 			if (!operationCallExpression.isContextless() && !getMatched(operationCallExpression)) {
