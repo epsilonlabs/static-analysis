@@ -1440,8 +1440,6 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 			}
 
 		}
-		if (operations.isEmpty())
-			return null;
 		return operations.get(0);
 	}
 	
