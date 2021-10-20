@@ -8,8 +8,10 @@ import org.eclipse.epsilon.common.module.ModuleMarker;
 import org.eclipse.epsilon.eol.dom.ExecutableBlock;
 import org.eclipse.epsilon.eol.dom.Expression;
 import org.eclipse.epsilon.eol.dom.StatementBlock;
-import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalysisContext;
+import org.eclipse.epsilon.eol.execute.context.FrameType;
+import org.eclipse.epsilon.eol.execute.context.Variable;
 import org.eclipse.epsilon.eol.staticanalyser.EolStaticAnalyser;
+import org.eclipse.epsilon.eol.types.EolPrimitiveType;
 import org.eclipse.epsilon.erl.dom.Post;
 import org.eclipse.epsilon.erl.dom.Pre;
 import org.eclipse.epsilon.etl.EtlModule;
@@ -50,7 +52,6 @@ public class EtlStaticAnalyser extends EolStaticAnalyser implements IEtlVisitor 
 		StatementBlock ruleBody = (StatementBlock) rule.getBody();
 		ruleBody.accept(this);
 		}
-
 	}
 
 	@Override
@@ -69,7 +70,10 @@ public class EtlStaticAnalyser extends EolStaticAnalyser implements IEtlVisitor 
 
 			super.mainValidate(etlModule);
 			for (TransformationRule tr : etlModule.getTransformationRules()) {
+				this.getContext().getFrameStack().enterLocal(FrameType.UNPROTECTED, tr, new Variable("self", EolPrimitiveType.String));
 				tr.accept(this);
+				this.getContext().getFrameStack().leaveLocal(tr);
+				
 			}
 			
 			for (Post post : etlModule.getDeclaredPost()) {
