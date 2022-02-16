@@ -171,6 +171,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 				createTypeCompatibilityError(targetExpression, valueExpression);
 		}
 	}
+
 	@Override
 	public void visit(BooleanLiteral booleanLiteral) {
 		setResolvedType(booleanLiteral, EolPrimitiveType.Boolean);
@@ -738,7 +739,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 									+ getResolvedType(targetExpression) + ", as it requires " + reqContextType,
 							Severity.Warning));
 
-				} else if (targetExpression instanceof OperationCallExpression) {
+				}  else if (targetExpression instanceof OperationCallExpression) {
 					if (!getMatchedReturnType(((OperationCallExpression) targetExpression)).isEmpty()) {
 						for (int i = 0; i < getMatchedReturnType(((OperationCallExpression) targetExpression))
 								.size(); i++) {
@@ -871,6 +872,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 
 			if (successMatch)
 				getMatchedOperations(operationCallExpression).add(op);
+			getExactMatchedOperation(operationCallExpression);
 		}
 
 		if (!getMatched(operationCallExpression) || getOperations(operationCallExpression).size() == 0)
@@ -1370,8 +1372,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 								EolType paramContextType = getResolvedType(
 										operation.getFormalParameters().get(loopCounter).getTypeExpression());
 								EolType paramTargetType = getResolvedType(parameter);
-								if (isCompatible(paramContextType, paramTargetType))
+								if (isCompatible(paramContextType, paramTargetType)) {
+									oc.getData().put("exactMatch", operation);
 									return operation;
+								}
 								loopCounter++;
 							}
 							loopCounter = 0;
@@ -1379,8 +1383,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 								EolType paramContextType = getResolvedType(
 										operation.getFormalParameters().get(loopCounter).getTypeExpression());
 								EolType paramTargetType = getResolvedType(parameter);
-								if (canBeCompatible(paramContextType, paramTargetType))
+								if (canBeCompatible(paramContextType, paramTargetType)) {
+									oc.getData().put("exactMatch", operation);
 									return operation;
+								}
 								loopCounter++;
 							}
 
@@ -1394,8 +1400,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 								EolType paramContextType = getResolvedType(
 										operation.getFormalParameters().get(loopCounter).getTypeExpression());
 								EolType paramTargetType = getResolvedType(parameter);
-								if (isCompatible(paramContextType, paramTargetType))
+								if (isCompatible(paramContextType, paramTargetType)) {
+									oc.getData().put("exactMatch", operation);
 									return operation;
+								}
 								loopCounter++;
 							}
 							loopCounter = 0;
@@ -1403,12 +1411,15 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 								EolType paramContextType = getResolvedType(
 										operation.getFormalParameters().get(loopCounter).getTypeExpression());
 								EolType paramTargetType = getResolvedType(parameter);
-								if (canBeCompatible(paramContextType, paramTargetType))
+								if (canBeCompatible(paramContextType, paramTargetType)) {
+									oc.getData().put("exactMatch", operation);
 									return operation;
+								}
 								loopCounter++;
 							}
 
 						}
+						oc.getData().put("exactMatch", operation);
 						return operation;
 					}
 				} else {
@@ -1418,8 +1429,10 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 							EolType paramContextType = getResolvedType(
 									operation.getFormalParameters().get(loopCounter).getTypeExpression());
 							EolType paramTargetType = getResolvedType(parameter);
-							if (isCompatible(paramContextType, paramTargetType))
+							if (isCompatible(paramContextType, paramTargetType)) {
+								oc.getData().put("exactMatch", operation);
 								return operation;
+							}
 							loopCounter++;
 						}
 						loopCounter = 0;
@@ -1427,16 +1440,21 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 							EolType paramContextType = getResolvedType(
 									operation.getFormalParameters().get(loopCounter).getTypeExpression());
 							EolType paramTargetType = getResolvedType(parameter);
-							if (canBeCompatible(paramContextType, paramTargetType))
+							if (canBeCompatible(paramContextType, paramTargetType)) {
+								oc.getData().put("exactMatch", operation);
 								return operation;
+							}
 							loopCounter++;
 						}
 
 					}
+					oc.getData().put("exactMatch", operation);
 					return operation;
 				}
 			}
 
+		}
+		oc.getData().put("exactMatch", operations.get(0));
 		}
 		return operations.get(0);
 	}
@@ -1672,7 +1690,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		}
 		return resolvedType;
 	}
-	
+
 	public boolean hasResolvedType(Expression expresion) {
 		EolType resolvedType = getResolvedType(expresion);
 		return resolvedType != EolAnyType.Instance;
@@ -1703,7 +1721,7 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 		if (type.getParentTypes().isEmpty()) return null;
 		else return type.getParentTypes().get(0);
 	}
-	
+
 	public EolStaticAnalysisContext getContext() {
 		return context;
 	}
