@@ -1353,8 +1353,6 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 	}
 
 	public Operation getExactMatchedOperation(OperationCallExpression oc) {
-		if (oc.getName().equals("getDomainMetaElement"))
-			System.err.println();
 		List<Operation> operations = matchedOperations.get(oc);
 		if (operations.isEmpty())
 			return null;
