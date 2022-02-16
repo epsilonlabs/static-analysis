@@ -174,7 +174,7 @@ operation Any isDefined() : Boolean {
 }
 // Added for Eugenia _ 17March2020
 @builtin
-operation Collection<Any> add(item : Any) : Boolean {
+operation Any add(item : Any) : Boolean {
 }
 // Added for Eugenia _ 17March2020
 @builtin
@@ -227,7 +227,7 @@ operation Any isTypeOf(type : Any) : Boolean {
 }
 // Added for Eugenia _ 18March2020
 @builtin
-operation Any get(key : Any) : Any {
+operation Collection<Any> get(key : Any) : EolSelfContentType {
 }
 // Remove it after testing _ 25Feb2020
 @builtin
@@ -240,7 +240,7 @@ operation Any asSet(): Set {
 operation Any satisfies(invariant :String) : Boolean {
 }
 @builtin 
-operation String substring(startIndex : Integer,endIndex : Integer) : String {
+operation String substring(startIndex : Integer, endIndex : Integer) : String {
 }
 @builtin 
 operation String substring(startIndex : Integer) : String {
@@ -258,5 +258,23 @@ operation Collection<Any> excludesAll(col : Collection<Any>) :Boolean {
 operation Collection<Any> flatten() :Collection<Any> {
 }
 @builtin
-operation Collection<Any> contains(Any) :Boolean {
+operation Any contains(param : Any) :Boolean {
+}
+@builtin
+operation Any equivalent() :Any {
+}
+@builtin
+operation String compareTo(str : String) :Integer{
+}
+@builtin
+operation Collection<Any> excludingAll(a: Collection<Any>) :Collection<EolSelfContentType> {
+}
+@builtin
+operation Any asString() :String {
+}
+@builtin
+operation Any toString() :String {
+}
+@builtin
+operation String indexOf(a: String) :Integer {
 }
