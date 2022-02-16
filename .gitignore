@@ -3,3 +3,13 @@ org.eclipse.epsilon.etl.staticanalyser/bin
 org.eclipse.epsilon.eol.staticanalyser/bin
 org.eclipse.epsilon.examples.staticanalyser/bin
 *.class
+org.eclipse.epsilon.evl.staticanalyser.tests/bin
+org.eclipse.epsilon.etl.staticanalyser.tests/bin
+org.eclipse.epsilon.eol.staticanalyser.tests/src/org/eclipse/epsilon/eol/.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/src/org/eclipse/epsilon/.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/src/org/eclipse/.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/src/org/.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/src/.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/.DS_Store
+.DS_Store
+org.eclipse.epsilon.eol.staticanalyser.tests/bin
