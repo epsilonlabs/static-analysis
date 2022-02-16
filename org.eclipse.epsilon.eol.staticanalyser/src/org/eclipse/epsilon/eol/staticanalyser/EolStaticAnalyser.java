@@ -1455,7 +1455,6 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 
 		}
 		oc.getData().put("exactMatch", operations.get(0));
-		}
 		return operations.get(0);
 	}
 	
