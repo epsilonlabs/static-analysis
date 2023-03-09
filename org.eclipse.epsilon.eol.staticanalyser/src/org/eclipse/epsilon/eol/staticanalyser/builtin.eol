@@ -266,6 +266,11 @@ operation Any contains(param : Any) :Boolean {
 @builtin
 operation Any equivalent() :Any {
 }
+
+@builtin
+operation Any matches(param: Any) :Boolean {
+}
+
 @builtin
 operation String compareTo(str : String) :Integer{
 }
