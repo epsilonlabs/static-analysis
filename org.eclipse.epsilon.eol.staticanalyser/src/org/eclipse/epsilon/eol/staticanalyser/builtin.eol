@@ -22,6 +22,9 @@ operation String pad(a: Integer, b: String, c: Boolean) : String {
 operation String isSubstringOf (a: String) : Boolean {
 }
 @builtin
+operation String startsWith (a: String) : Boolean {
+}
+@builtin
 operation String store(where: String) {
 }
 @builtin
@@ -159,7 +162,7 @@ operation Collection<Any> testContent () : EolSelfContentType {
 }
 // Added for Eugenia _ 17March2020
 @builtin
-operation Collection<Any> first() : Any {
+operation Collection<Any> first() : EolSelfContentType {
 }
 // Added for Eugenia _ 17March2020
 @builtin
@@ -277,4 +280,7 @@ operation Any toString() :String {
 }
 @builtin
 operation String indexOf(a: String) :Integer {
+}
+@builtin
+operation Object type() :Object {
 }
