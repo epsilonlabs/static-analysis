@@ -13,3 +13,4 @@ org.eclipse.epsilon.eol.staticanalyser.tests/src/.DS_Store
 org.eclipse.epsilon.eol.staticanalyser.tests/.DS_Store
 .DS_Store
 org.eclipse.epsilon.eol.staticanalyser.tests/bin
+org.eclipse.epsilon.ecl.staticanalyser/bin
