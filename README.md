@@ -3,6 +3,7 @@ This repository is built-on the top of Epsilon framework. It supports several la
 1. Epsilon Object Language (EOL)
 2. Epsilon Validation Language (EVL)
 3. Epsilon Transformation Language (ETL)
+4. Epsilon Comparison Language (ECL)
 
 Steps to execute static analysis:
 
@@ -32,3 +33,8 @@ Steps to execute static analysis:
 1. org.eclipse.epsilon.examples.staticanalyser/src/org/eclipse/epsilon/examples/staticanalyser/etl/EtlStaticAnalysisStandaloneExample.java.
 
 2. Right-click on **EtlStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
+
+## ECL Example:
+1. org.eclipse.epsilon.examples.staticanalyser/src/org/eclipse/epsilon/examples/staticanalyser/ecl/EclStaticAnalysisStandaloneExample.java.
+
+2. Right-click on **EclStaticAnalysisStandaloneExample.java** in the Project Explorer and select Run as → Java Application.
