@@ -1356,6 +1356,8 @@ public class EolStaticAnalyser implements IModuleValidator, IEolVisitor {
 
 	public Operation getExactMatchedOperation(OperationCallExpression oc) {
 		List<Operation> operations = matchedOperations.get(oc);
+		if (operations == null)
+			return null;
 		if (operations.isEmpty())
 			return null;
 		if (operations.size() > 1) {
